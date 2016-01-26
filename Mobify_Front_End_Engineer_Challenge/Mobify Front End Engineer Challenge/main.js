@@ -24,5 +24,12 @@
  *  '  '
  */
 var cssquery = window.cssquery = function(s) {
+    // descendant queries take two selectors split 
+    // by 1 or more space, new lines or tab
+    var dummy = "   bla     bla ".trim();  
+    document.getElementById("output").innerHTML = dummy;
     return [];
 };
+
+// execute code on page load
+document.addEventListener("DOMContentLoaded", cssquery, false);
