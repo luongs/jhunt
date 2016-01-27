@@ -46,7 +46,7 @@ var cssquery = window.cssquery = function(s) {
 
     var ancestor_type = match_ancestor_type(ancestor);
 
-    var match_vals = document.getElementsByTagName(ancestor);
+    var match_vals = query_by_type(ancestor, ancestor_type);
     for (i=0; i<match_vals.length; i++){
         console.log(match_vals.item(i))
 
@@ -76,6 +76,19 @@ function match_ancestor_type(ancestor) {
     }
 }
 
+function query_by_type(ancestor, a_type) {
+    switch(a_type) {
+        case CLASS_TYPE:
+            return document.getElementsByClassName(ancestor);
+            break;
+        case ID_TYPE:
+            return document.getElementById(ancestor);
+            break;
+        case TAG_TYPE:
+            return document.getElementsByTagName(ancestor);
+            break;
+    }
+}
 function query_id(descendant) {
     console.log("QUERY_ID");
 }
