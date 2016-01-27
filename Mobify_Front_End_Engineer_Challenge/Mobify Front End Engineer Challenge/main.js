@@ -28,11 +28,12 @@ var DESCENDANT = 1;
 var CLASS_TYPE = '.';
 var ID_TYPE = '#';
 var TAG_TYPE = 't';
+var UNIVERSAL = '*';
 
 var cssquery = window.cssquery = function(s) {
     // descendant queries take two selectors split 
     // by 1 or more space, new lines or tab
-    var trim_str = "   #bla     p  ".trim();  
+    var trim_str = "   #bla    *   ".trim();  
     var split_str = trim_str.split(" ");
     split_str = split_str.filter(remove_spaces);
 
@@ -43,16 +44,21 @@ var cssquery = window.cssquery = function(s) {
      
     var ancestor = split_str[ANCESTOR];
     var descendant = split_str[DESCENDANT];
-
     var ancestor_type = match_ancestor_type(ancestor);
 
     var match_vals = query_by_type(ancestor, ancestor_type);
     var match_list = [];
     var result_arr = [];
+
     if (ancestor_type == ID_TYPE){
        match_list = match_vals.children;
        for (var i=0; i<match_list.length; i++) {
-          if (match_list[i].tagName == descendant.toUpperCase()){
+
+          // push every value if universal selector is input
+          if (descendant == UNIVERSAL){
+             result_arr.push(match_list[i]);
+          }
+          else if (match_list[i].tagName == descendant.toUpperCase()){
              console.log(match_list[i]);
              result_arr.push(match_list[i]);
           }
@@ -64,7 +70,13 @@ var cssquery = window.cssquery = function(s) {
             match_list[i] = match_vals[i].children;
 
             for (var j=0; j<match_list[i].length; j++){
-                if (match_list[i][j].tagName == descendant.toUpperCase()){
+
+                // '*' selector push all to result
+                if (descendant == UNIVERSAL){
+                     result_arr.push(match_list[i]);
+                }
+
+                else if (match_list[i][j].tagName == descendant.toUpperCase()){
                     result_arr.push(match_list[i][j]); 
                 }   
             }
