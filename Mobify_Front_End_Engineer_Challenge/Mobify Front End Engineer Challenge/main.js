@@ -61,7 +61,7 @@ var cssquery = window.cssquery = function(s) {
             for (var j=0; j<match_list[i].length; j++){
                 if (match_list[i][j].tagName == descendant.toUpperCase()){
 
-                    console.log(match_list[i][j].tagName); 
+                    console.log(match_list[i][j].text); 
                 }   
             }
         }
