@@ -32,7 +32,7 @@ var TAG_TYPE = 't';
 var cssquery = window.cssquery = function(s) {
     // descendant queries take two selectors split 
     // by 1 or more space, new lines or tab
-    var trim_str = "   .cool     a  ".trim();  
+    var trim_str = "   #bla     p  ".trim();  
     var split_str = trim_str.split(" ");
     split_str = split_str.filter(remove_spaces);
 
@@ -48,10 +48,15 @@ var cssquery = window.cssquery = function(s) {
 
     var match_vals = query_by_type(ancestor, ancestor_type);
     var match_list = [];
-    var match_list_lenght = 0;
-
+    var result_arr = [];
     if (ancestor_type == ID_TYPE){
-       console.log(match_vals.tagName);
+       match_list = match_vals.children;
+       for (var i=0; i<match_list.length; i++) {
+          if (match_list[i].tagName == descendant.toUpperCase()){
+             console.log(match_list[i]);
+             result_arr.push(match_list[i]);
+          }
+       }
     }
     else{
         // Get children from nodelist
@@ -60,16 +65,14 @@ var cssquery = window.cssquery = function(s) {
 
             for (var j=0; j<match_list[i].length; j++){
                 if (match_list[i][j].tagName == descendant.toUpperCase()){
-
-                    console.log(match_list[i][j].text); 
+                    result_arr.push(match_list[i][j]); 
                 }   
             }
         }
         
     }
-
-    document.getElementById("output").innerHTML = match_vals[0];
-    return [];
+    console.log(result_arr);
+    return result_arr;
 };
 
 function remove_spaces(value) {
@@ -109,20 +112,6 @@ function query_by_type(ancestor, a_type) {
             break;
     }
 }
-function query_id(descendant) {
-    console.log("QUERY_ID");
-}
 
-function query_class(descendant) {
-    console.log("QUERY_CLASS");
-}
-
-function query_tag(descendant) {
-    console.log("QUERY_TAG");
-}
-
-function filter_descendant(value) {
-
-}
 // execute code on page load
 document.addEventListener("DOMContentLoaded", cssquery, false);
