@@ -59,7 +59,10 @@ var cssquery = window.cssquery = function(s) {
             match_list[i] = match_vals[i].children;
 
             for (var j=0; j<match_list[i].length; j++){
-                console.log(match_list[i][j]);
+                if (match_list[i][j].tagName == descendant.toUpperCase()){
+
+                    console.log(match_list[i][j].tagName); 
+                }   
             }
         }
         
