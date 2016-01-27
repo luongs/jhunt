@@ -48,25 +48,21 @@ var cssquery = window.cssquery = function(s) {
 
     var match_vals = query_by_type(ancestor, ancestor_type);
     var match_list = [];
+    var match_list_lenght = 0;
 
     if (ancestor_type == ID_TYPE){
        console.log(match_vals.tagName);
     }
     else{
         // Get children from nodelist
-        var children_list = []
         for (var i=0; i<match_vals.length; i++){
             match_list[i] = match_vals[i].children;
-            console.log(match_list[i]);
+
+            for (var j=0; j<match_list[i].length; j++){
+                console.log(match_list[i][j]);
+            }
         }
         
-        // Target descendant tag type from children
-        for (var i=0; i< match_list.length; i++){
-            console.log(match_list[i][i]);
-            if (match_list[i].tagName == descendant)
-                console.log(match_list[i].tagName);
-        }
-
     }
 
     document.getElementById("output").innerHTML = match_vals[0];
