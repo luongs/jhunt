@@ -37,7 +37,7 @@ var cssquery = window.cssquery = function(s) {
 
     // descendant queries take two selectors split 
     // by 1 or more space, new lines or tab
-    var trim_str = "   #bla    a   ".trim();  
+    var trim_str = s.trim();  
     var split_str = trim_str.split(" ");
     split_str = split_str.filter(remove_spaces);
 
