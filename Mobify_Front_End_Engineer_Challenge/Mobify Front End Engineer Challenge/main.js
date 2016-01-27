@@ -23,13 +23,30 @@
  *   / |
  *  '  '
  */
+var ANCESTOR = 0;
+var DESCENDANT = 1;
+
 var cssquery = window.cssquery = function(s) {
     // descendant queries take two selectors split 
     // by 1 or more space, new lines or tab
-    var dummy = "   bla     bla ".trim();  
-    document.getElementById("output").innerHTML = dummy;
+    var trim_str = "   div     p  ".trim();  
+    var split_str = trim_str.split(" ");
+    split_str = split_str.filter(remove_spaces);
+
+    // descendant query should take only 2 selectors
+    if (split_str.length != 2){
+        return [];
+    }
+    
+    var ancestor = split_str[ANCESTOR];
+    var descendant = split_str[DESCENDANT];
+
+    document.getElementById("output").innerHTML = ancestor;
     return [];
 };
 
+function remove_spaces(value) {
+    return value != '';
+}
 // execute code on page load
 document.addEventListener("DOMContentLoaded", cssquery, false);
