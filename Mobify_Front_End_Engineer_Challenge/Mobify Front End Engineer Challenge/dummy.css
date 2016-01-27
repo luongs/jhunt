@@ -5,3 +5,7 @@ div p{
 .cool *{
     color: green;
 }
+
+#bla p{ 
+    color: blue;
+}
