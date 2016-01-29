@@ -37,7 +37,7 @@ var cssquery = window.cssquery = function(s) {
 
     // descendant queries take two selectors split 
     // by 1 or more space, new lines or tab
-    var trim_str = "#bla *".trim();  
+    var trim_str = ".cool *".trim();  
     var split_str = trim_str.split(" ");
     split_str = split_str.filter(remove_spaces);
 
@@ -93,8 +93,8 @@ var cssquery = window.cssquery = function(s) {
             for (var j=0; j<match_list[i].length; j++){
                 // '*' selector push all to result
                 if (is_universal){
-                     result_arr.push(match_list[i]);
-                     return result_arr;
+                     result_arr.push(match_list[i][j]);
+                     continue;  // must add all child instances 
                 }
                 else if (match_list[i][j].tagName == descendant[0].toUpperCase()){
                     result_arr.push(match_list[i][j]); 
@@ -103,6 +103,7 @@ var cssquery = window.cssquery = function(s) {
         }
     }
     
+    console.log(result_arr);
     return result_arr;
 };
 
