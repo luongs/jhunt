@@ -31,13 +31,13 @@ var TAG_TYPE = 't';
 var UNIVERSAL = '*';
 
 /* definition of descendant selector taken from mdn:
-   https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_selectors
+   https://www.w3.org/TR/2011/REC-CSS2-20110607/selector.html#descendant-selectors
 */
 var cssquery = window.cssquery = function(s) {
 
-    // descendant queries take two selectors split 
+    // descendant queries take two selectors split
     // by 1 or more space, new lines or tab
-    var trim_str = s.trim();  
+    var trim_str = s.trim();
     var split_str = trim_str.split(" ");
     split_str = split_str.filter(remove_spaces);
 
@@ -45,7 +45,7 @@ var cssquery = window.cssquery = function(s) {
     if (split_str.length < 2){
         return [];
     }
-     
+
     var ancestor = split_str[ANCESTOR];
     var descendant = [];
     var ancestor_type = match_ancestor_type(ancestor);
@@ -66,7 +66,7 @@ var cssquery = window.cssquery = function(s) {
 
     if (ancestor_type == ID_TYPE){
        match_list = match_vals.children;
-       while (match_count<match_list.length && descendant.length!=0){ 
+       while (match_count<match_list.length && descendant.length!=0){
 
          if (is_universal){
              result_arr.push(match_list[i]);
@@ -94,10 +94,10 @@ var cssquery = window.cssquery = function(s) {
             temp_descendant = [];
             // make a temporary copy of the descendant array
             for (var j=0; j<descendant.length; j++){
-                temp_descendant[j] = descendant[j]; 
+                temp_descendant[j] = descendant[j];
             }
 
-            while (match_count<match_list[i].length && temp_descendant.length!=0){ 
+            while (match_count<match_list[i].length && temp_descendant.length!=0){
                  if (is_universal){
                      result_arr.push(match_list[i][match_count]);
                      match_count++;
@@ -106,7 +106,7 @@ var cssquery = window.cssquery = function(s) {
                   else if (match_list[i][match_count].tagName == temp_descendant[0].toUpperCase()){
                      result_arr.push(match_list[i][match_count]);
                   }
-                    
+
                   match_count++;
                   // There is more than 1 descendant selector
                   if (match_count == match_list[i].length && temp_descendant.length!=0){
@@ -115,7 +115,7 @@ var cssquery = window.cssquery = function(s) {
                   }
             }
             match_count=0;
-           
+
         }
     }
     return result_arr;
@@ -129,7 +129,7 @@ function match_ancestor_type(ancestor) {
     var first_char = ancestor.charAt(0);
     switch(first_char) {
         case CLASS_TYPE:
-            return CLASS_TYPE; 
+            return CLASS_TYPE;
             break;
         case ID_TYPE:
             return ID_TYPE;

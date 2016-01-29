@@ -2,9 +2,9 @@ Input: String s
 Ouput: Array of elements (node)
 
 Logic for descendant selector follows the description on mdn:
-https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_selectors
+https://www.w3.org/TR/2011/REC-CSS2-20110607/selector.html#descendant-selectors
 
-Two values can be expected in the string 
+Two or more values can be expected in the string
 Whitespaces before or after could be present
 
 dummy.css and dummy.html were files used to test the code
