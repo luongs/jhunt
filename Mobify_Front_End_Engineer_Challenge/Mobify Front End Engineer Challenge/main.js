@@ -37,7 +37,7 @@ var cssquery = window.cssquery = function(s) {
 
     // descendant queries take two selectors split 
     // by 1 or more space, new lines or tab
-    var trim_str = ".cool *".trim();  
+    var trim_str = "#bla p h1".trim();  
     var split_str = trim_str.split(" ");
     split_str = split_str.filter(remove_spaces);
 
@@ -70,7 +70,27 @@ var cssquery = window.cssquery = function(s) {
 
     if (ancestor_type == ID_TYPE){
        match_list = match_vals.children;
-       
+       while (match_count<match_list.length && descendant.length!=0){ 
+
+         if (is_universal){
+             result_arr.push(match_list[i]);
+             console.log(result_arr);
+             return result_arr;
+          }
+          else if (match_list[match_count].tagName == descendant[0].toUpperCase()){
+             console.log(match_list[match_count]);
+             result_arr.push(match_list[match_count]);
+          }
+
+          match_count++;
+          // There is more than 1 descendant selector
+          if (match_count == match_list.length && descendant.length!=0){
+             match_count = 0;
+             descendant.shift();
+          }
+
+       }
+       /*
        for (var i=0; i<match_list.length; i++) {
           // push every value if universal selector is input
           if (is_universal){
@@ -83,6 +103,7 @@ var cssquery = window.cssquery = function(s) {
              result_arr.push(match_list[i]);
           }
        }
+       */
     }
     else{   // Class type or Tag type
 
