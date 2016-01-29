@@ -37,7 +37,7 @@ var cssquery = window.cssquery = function(s) {
 
     // descendant queries take two selectors split 
     // by 1 or more space, new lines or tab
-    var trim_str = "#bla p h1".trim();  
+    var trim_str = ".cool p *".trim();  
     var split_str = trim_str.split(" ");
     split_str = split_str.filter(remove_spaces);
 
@@ -64,7 +64,6 @@ var cssquery = window.cssquery = function(s) {
         if (descendant[i] == UNIVERSAL){
             is_universal = true;
         }
-        alert("Descendant "+descendant[i]);
         amt_descendant++;
     }
 
@@ -90,20 +89,6 @@ var cssquery = window.cssquery = function(s) {
           }
 
        }
-       /*
-       for (var i=0; i<match_list.length; i++) {
-          // push every value if universal selector is input
-          if (is_universal){
-             result_arr.push(match_list[i]);
-             console.log(result_arr);
-             return result_arr;
-          }
-          else if (match_list[i].tagName == descendant[0].toUpperCase()){
-             console.log(match_list[i]);
-             result_arr.push(match_list[i]);
-          }
-       }
-       */
     }
     else{   // Class type or Tag type
 
@@ -111,16 +96,30 @@ var cssquery = window.cssquery = function(s) {
         for (var i=0; i<match_vals.length; i++){
             match_list[i] = match_vals[i].children;
 
-            for (var j=0; j<match_list[i].length; j++){
-                // '*' selector push all to result
-                if (is_universal){
-                     result_arr.push(match_list[i][j]);
-                     continue;  // must add all child instances 
-                }
-                else if (match_list[i][j].tagName == descendant[0].toUpperCase()){
-                    result_arr.push(match_list[i][j]); 
-                }   
+            temp_descendant = [];
+            // make a temporary copy of the array
+            for (var j=0; j<descendant.length; j++){
+                temp_descendant[j] = descendant[j]; 
             }
+
+            while (match_count<match_list[i].length && temp_descendant.length!=0){ 
+                 if (is_universal){
+                     result_arr.push(match_list[i][match_count]);
+                     continue;  //must add all child instances
+                  }
+                  else if (match_list[i][match_count].tagName == temp_descendant[0].toUpperCase()){
+                     result_arr.push(match_list[i][match_count]);
+                  }
+                    
+                  match_count++;
+                  // There is more than 1 descendant selector
+                  if (match_count == match_list[i].length && temp_descendant.length!=0){
+                     match_count = 0;
+                     temp_descendant.shift();
+                  }
+            }
+            match_count=0;
+           
         }
     }
     
