@@ -37,7 +37,7 @@ var cssquery = window.cssquery = function(s) {
 
     // descendant queries take two selectors split 
     // by 1 or more space, new lines or tab
-    var trim_str = ".cool p *".trim();  
+    var trim_str = s.trim();  
     var split_str = trim_str.split(" ");
     split_str = split_str.filter(remove_spaces);
 
@@ -54,17 +54,14 @@ var cssquery = window.cssquery = function(s) {
     var match_list = [];
     var result_arr = [];
 
-    var amt_descendant = 0;
     var match_count = 0;
     var is_universal = false;
 
     for (var i=0; i<split_str.length-1; i++){
-        
         descendant[i] = split_str[i+1];
         if (descendant[i] == UNIVERSAL){
             is_universal = true;
         }
-        amt_descendant++;
     }
 
     if (ancestor_type == ID_TYPE){
@@ -73,11 +70,9 @@ var cssquery = window.cssquery = function(s) {
 
          if (is_universal){
              result_arr.push(match_list[i]);
-             console.log(result_arr);
              return result_arr;
           }
           else if (match_list[match_count].tagName == descendant[0].toUpperCase()){
-             console.log(match_list[match_count]);
              result_arr.push(match_list[match_count]);
           }
 
@@ -97,7 +92,7 @@ var cssquery = window.cssquery = function(s) {
             match_list[i] = match_vals[i].children;
 
             temp_descendant = [];
-            // make a temporary copy of the array
+            // make a temporary copy of the descendant array
             for (var j=0; j<descendant.length; j++){
                 temp_descendant[j] = descendant[j]; 
             }
@@ -105,6 +100,7 @@ var cssquery = window.cssquery = function(s) {
             while (match_count<match_list[i].length && temp_descendant.length!=0){ 
                  if (is_universal){
                      result_arr.push(match_list[i][match_count]);
+                     match_count++;
                      continue;  //must add all child instances
                   }
                   else if (match_list[i][match_count].tagName == temp_descendant[0].toUpperCase()){
@@ -122,8 +118,6 @@ var cssquery = window.cssquery = function(s) {
            
         }
     }
-    
-    console.log(result_arr);
     return result_arr;
 };
 
@@ -166,4 +160,4 @@ function query_by_type(ancestor, a_type) {
 }
 
 // execute code on page load, for testing purposes
-document.addEventListener("DOMContentLoaded", cssquery, false);
+//document.addEventListener("DOMContentLoaded", cssquery, false);
