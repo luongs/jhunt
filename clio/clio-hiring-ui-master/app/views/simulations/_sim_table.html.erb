@@ -1,0 +1,12 @@
+<table class="sim-table">
+  <% 0.upto(@simulation.height - 1) do |y| %>
+    <tr>
+    <% 0.upto(@simulation.width - 1) do |x| %>
+      <% cell = @simulation.at(x, y) %>
+      <td class="<%= cell %>"><%= cell %></td>
+    <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Verdict: <%= @simulation.verdict %></h2>

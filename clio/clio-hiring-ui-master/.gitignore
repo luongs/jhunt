@@ -1,0 +1,4 @@
+.secret
+*.sqlite3
+/log/
+/tmp

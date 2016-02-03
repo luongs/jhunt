@@ -1,0 +1,22 @@
+<h1><%= @simulation.name %></h1>
+
+<div id="sim-table">
+  <%= render partial: "sim_table" %>
+</div>
+
+<%= link_to 'Back', simulations_path %>
+
+<script>
+  function loadSimTable(elem) {
+    setTimeout(function() {
+      jQuery.ajax({
+        url: "<%= simulation_path(@simulation) %>",
+        method: "PUT",
+        success: function (data) { elem.html(data); }
+      });
+      loadSimTable(elem);
+    }, 3000);
+  };
+
+  loadSimTable(jQuery("#sim-table"));
+</script>
