@@ -1,6 +1,7 @@
 class SimulationsController < ApplicationController
 
   def index
+    @simulations = Simulation.all
   end
 
   def new
@@ -16,6 +17,7 @@ class SimulationsController < ApplicationController
   end
 
   def show
+    @simulation = Simulation.find(params[:id])
   end
 
   def update
