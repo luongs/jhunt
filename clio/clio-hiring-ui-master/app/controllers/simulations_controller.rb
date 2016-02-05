@@ -11,9 +11,13 @@ class SimulationsController < ApplicationController
   def create
     @simulation = Simulation.new(simulation_params)
 
-    @simulation.save
-    # redirect to index
-    redirect_to @simulation
+    # fields submitted correctly
+    if @simulation.save
+      # redirect to index
+      redirect_to @simulation
+    else
+      render 'new'
+    end
   end
 
   def show
