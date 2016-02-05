@@ -1,5 +1,6 @@
 class Simulator
 
+  # return either :hard, :soft or :none
   def randomize
     return [:hard, :soft, :none].sample
   end
@@ -11,9 +12,13 @@ class Simulator
     row = Integer(row)
     cols = Integer(cols)
     # Create empty array for seating arrangement
-    empty_array = Array.new(row) {Array.new(cols)}
+    multi_array = Array.new(row) {Array.new(cols)}
 
-    @array_people = seating_arrangement
+    # Fill array with :hard, :soft, :none values
+    multi_array.each do |items|
+      items.map! {randomize()}
+    end
+    @array_people = multi_array
   end
 
   def verdict
