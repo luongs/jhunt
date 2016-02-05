@@ -31,6 +31,10 @@ class SimulationsController < ApplicationController
   end
 
   def destroy
+    @simulation = Simulation.find(params[:id])
+    @simulation.destroy
+
+    redirect_to simulations_path
   end
 
   private
