@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Feel free to change this if you have a different version on your system.
-ruby '2.1.4'
+ruby '2.2.3'
 
 # Standard Rails gems
 gem 'rails', '4.2.1'
