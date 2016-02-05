@@ -4,11 +4,11 @@ class Simulator
   def randomize
     return [:hard, :soft, :none].sample
   end
-
+  
   # return an initialized array of array
   # seating_arrangement is dimension of array of arrays
   # eg: 3x3
-  def initialize(seating_arrangement)
+  def create_array(rect_size)
     row,cols = seating_arrangement.split('x')
     row = Integer(row)
     cols = Integer(cols)
@@ -21,6 +21,13 @@ class Simulator
     end
 
     @array_people = multi_array
+    return @array_people
+  end
+
+  
+  # constructor
+  def initialize(seating_arrangement)
+    @array_people = seating_arrangement   
     return @array_people
   end
 
