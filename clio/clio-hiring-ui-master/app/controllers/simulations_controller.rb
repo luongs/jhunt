@@ -4,9 +4,15 @@ class SimulationsController < ApplicationController
   end
 
   def new
+    @simulation = Simulation.new
   end
 
   def create
+    @simulation = Simulation.new(simulation_params)
+
+    @simulation.save
+    # redirect to index
+    redirect_to @simulation
   end
 
   def show
@@ -20,5 +26,10 @@ class SimulationsController < ApplicationController
 
   def destroy
   end
+
+  private
+    def simulation_params
+      params.require(:simulation).permit(:name, :width, :height)
+    end
 
 end
