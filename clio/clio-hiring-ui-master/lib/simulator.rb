@@ -4,7 +4,7 @@ class Simulator
   def randomize
     return [:hard, :soft, :none].sample
   end
-  
+
   # return an initialized array of array
   # seating_arrangement is dimension of array of arrays
   # eg: 3x3
@@ -24,10 +24,10 @@ class Simulator
     return @array_people
   end
 
-  
+
   # constructor
   def initialize(seating_arrangement)
-    @array_people = seating_arrangement   
+    @array_people = seating_arrangement
     return @array_people
   end
 
@@ -52,8 +52,9 @@ class Simulator
   end
 
   # return current array of people in simulation
-  # after state has been resolved?
+  # after state has been resolved? or returns current?
   def state
+    # implementation returns current
     return @array_people
   end
 
@@ -67,7 +68,85 @@ class Simulator
   #     if >=2 S
   #       ? => S
   def next
-    raise NotImplementedError   # FIXME
-  end
+    multi_array = @array_people
+    len_row = multi_array.size
+    len_col = multi_array[0].size
+    puts "START OF TEST"
+    res_hash = Hash[":hard"=>0,":soft"=>0,":none"=>0]
+    res_char = ''
+    current_char = ''
+    total_op = 0
+    total_none = 0
 
-end
+    # Check values around array
+    multi_array.each_with_index do |val,i|
+      subarray = multi_array[i]
+      subarray.each_with_index do |val2,j|
+        '''
+        if (i > 0 and j > 0)
+          res_char = multi_array[i-1][j-1]
+          res_hash[res_char]+=1
+        end
+
+        if (i> 0 and j< len_col-1)
+          res_char = multi_array[i-1][j+1]
+          res_hash[res_char]+=1
+        end
+
+        if (i < len_row-1 and j > 0)
+          res_char = multi_array[i+1][j-1]
+          res_hash[res_char]+=1
+        end
+
+        if (i<len_row-1 and j<len_col-1)
+          res_char = multi_array[i+1][j+1]
+          res_hash[res_char]+=1
+        end
+
+        if (i>0)
+          res_char = multi_array[i-1][j]
+          res_hash[res_char]+=1
+        end
+
+        if (i<len_row - 1)
+          res_char = multi_array[i+1][j]
+          res_hash[res_char]+=1
+        end
+
+        if (j>0)
+          res_char = multi_array[i][j-1]
+          res_hash[res_char]+=1
+        end
+
+        if (j<len_col)
+          res char = multi_array[i][j+1]
+          res_hash[res_char]+=1
+        end
+
+        current_char = multi_array[i][j]
+        total_h = res_hash[":hard"]
+        total_s = res_hash[":soft"]
+        total_op = total_h+total_s
+        total_none = res_hash[":none"]
+
+        if (total_op<2)
+          multi_array[i][j] = ":none"
+        elsif (total_op>3)
+          multi_array[i][j] = ":none"
+        elsif (total_op == 3)
+          if (total_h>=2)
+            multi_array[i][j] = ":hard"
+          elsif (total_s>=2)
+            multi_array[i][j] = ":soft"
+          end
+        end
+        '''
+        puts "Index i is #{i}, Index j is #{j}"
+        puts "Value: #{multi_array[i][j]}"
+      end
+    end   # end for while loops
+
+    return multi_array
+  end # end of next function
+
+end # end of class
