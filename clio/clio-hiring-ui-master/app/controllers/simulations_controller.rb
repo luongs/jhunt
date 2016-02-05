@@ -1,5 +1,5 @@
 class SimulationsController < ApplicationController
-
+  include Helper
   def index
     @simulations = Simulation.all
   end
@@ -10,6 +10,14 @@ class SimulationsController < ApplicationController
 
   def create
     @simulation = Simulation.new(simulation_params)
+
+    #seating_arrangement = Simulator.create_array(@simulation.width, @simulation.height)
+    # Call a method from lib
+    height = @simulation.height
+    width = @simulation.width
+    people_arr = create_array(height, width)
+    sim = Simulator.new(people_arr)
+
 
     # fields submitted correctly
     if @simulation.save
