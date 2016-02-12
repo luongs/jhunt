@@ -1,0 +1,46 @@
+
+Properties
+* Access is possible with dot or bracket notation
+  * arr.length
+  * value['x']
+* Using dot will try and match variable name
+* Using brackets will try to evaluate property name
+
+Map: 
+* Use of 'in' operator to check whether value exists in object
+* 'in' can also be used to loop through properties of an object
+  * for (var event in map)
+      console.log("Event: "+event+" is "+map[event])
+
+Useful array methods: 
+* push(), pop() => removes and adds at the end of array
+* length
+* shift(), unshift() => removes and adds at the start of array
+* indexOf(val, startIndex=0) => searches element at start of array
+* lastIndexOf(val, endIndex=-1)
+* slice(startIndex, endIndex) => returns arr bw start and end index
+* concat() => glues arrays together
+* join(value) => turn array to string
+
+Strings and their properties: 
+* length, toUpperCase, toLowerCase
+* slice()
+* indexOf()
+* trim() => removes extra whitespaces
+* charAt()
+
+The arguments object: 
+* 'arguments' variable is present in function 
+* var has length property
+
+The Math object: 
+* Defines functions in a different namespace to stop you from redefining 
+  important variable names
+* floor(), ceil(), random(), max(), min(), sqrt()
+
+The global object
+* Stored in window variable
+* eg:  var myVar = 10;
+       console.log("myVar" in window);
+       console.log(window.myVar);
+
