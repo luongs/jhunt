@@ -20,3 +20,12 @@ Ch3 Functions:
     * Think of the function keyword as 'freezing' the code in the body and
       wrapping it in a package. Returning function will return a piece of 
       pkg
+
+    Functions and side effects
+    * Function with side effects do not return anything, they might be used
+      to print output to the console
+    * pure function => no side effects and doesn't rely on side effects from
+      from other code (eg: doesn't read global vars changed in other fncs)
+    * pure functions will always return the same value regardless of how 
+      they're called! Since they don't rely on anything else from the program.
+      Hence they're easier to debug
