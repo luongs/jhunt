@@ -14,3 +14,9 @@ Ch3 Functions:
     * JS ignores any extra args passed
     * Returns undefined if too few passed
     
+    Closure
+    * The ability to reference a spefic instance of local variables 
+      in an enclosing function
+    * Think of the function keyword as 'freezing' the code in the body and
+      wrapping it in a package. Returning function will return a piece of 
+      pkg
