@@ -1,0 +1,16 @@
+Ch3 Functions:
+    Scope
+    * Lexical scoping: Makes all variables around a function visible 
+    * Functions are the only things creating a new scope
+    * Blocks do not create new scope
+    
+    Functions as values
+    * Fnc can be passed as params, be assigned new functionality, etc
+
+    Declaration notation
+    * Fnc can be declared after their first uses
+
+    Optional arguments
+    * JS ignores any extra args passed
+    * Returns undefined if too few passed
+    
