@@ -1,0 +1,3 @@
+Cost of functional programming: 
+* function calls are more expensive than simple for loops
+* hence tradeoff in clarity vs amt of work done by machine
