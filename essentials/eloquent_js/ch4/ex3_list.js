@@ -24,5 +24,14 @@ function listToArray(list){
   return arr;
 }
 
+function prepend(element, list){
+  var new_list = {};
+  new_list.value = element;
+  new_list.rest = list;
+  return new_list;
+}
+
+
 console.log(arrayToList([10,20,30]));
 console.log(listToArray(arrayToList([10,20,30])));
+console.log(prepend(10, prepend(20,null)));
