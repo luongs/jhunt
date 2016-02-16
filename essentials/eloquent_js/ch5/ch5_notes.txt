@@ -1,3 +1,15 @@
+Lists as generic interface: 
+* Most high order function are built to work on lists
+* Most things can be seen as a list, element of a list, a predicate to test 
+  list values (isEqual, isGreater, etc) or a transformation of list values
+* Generics work on different data types. Eg:a function can work for both string
+  and arrays
+* Lifting: changing a function that works with only a single type to one 
+  working with many different types
+* Lifting is possible because every type of data fed to functions can be 
+  processed as lists which all share the same interface. 
+
+
 Cost of functional programming: 
 * function calls are more expensive than simple for loops
 * hence tradeoff in clarity vs amt of work done by machine
