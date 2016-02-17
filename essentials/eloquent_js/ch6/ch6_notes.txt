@@ -1,0 +1,30 @@
+this variable: 
+  * Refers to current object calling the property or function
+
+Prototype: 
+  * Prototype is another object used as a fallback source of properties. 
+  * Ie: when you request a property which the object does not have
+  * Object.prototype is the ancestral object behind almost all objects 
+    (including empty objects)
+  * It provides methods like toString()
+  * Functions derive from Function.prototype
+  * Arrays from Array.prototype
+
+Constructors: 
+  * Created with keyword new
+
+Overriding derived properties:
+  * Adding a property to object will add it to the object itself, whether or
+    not it has a prototype. 
+
+Prototype interference: 
+  * Properties are enumerable when you create them and thus show up when 
+    calling for/in
+  * Prototypes are not enumerable and thus won't show up in for/in
+  * using hasOwnProperty() tells us whether the object has the property
+    without looking at the prototype
+  * hasOwnProperty() can be used to inspect base object prototype and make 
+    sure it hasn't been messed up
+
+
+
