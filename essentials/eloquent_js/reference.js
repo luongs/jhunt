@@ -65,3 +65,19 @@ var sum = arr.reduce(function(total, cur){
 console.log("reduce() array to a single value: "+sum);
 arr.sort();
 console.log("sort() array: "+arr);
+
+// Difference between null and undefined: 
+// null has been set to declare no value
+// undefined is not set
+var notSet; 
+var nullSet = null;
+console.log("ouput of notSet: "+notSet);
+console.log("ouput of nullSet: "+nullSet);
+
+// Difference between == and ===
+// == executes type coercion and checks
+// === no type coercion therefore checks value AND type
+var doubleEqual = (null==undefined);
+var tripleEqual = (null===undefined);
+console.log("null==undefined: "+doubleEqual);
+console.log("null===undefined: "+tripleEqual);
