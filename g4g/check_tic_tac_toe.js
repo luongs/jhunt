@@ -17,6 +17,7 @@ function convertBoard(board){
 function checkWinner(numBoard){
   var totalV, totalH = 0;
   
+  // check hor and vert
   for (var i=0; i<numBoard.length; i++){
     for (var j=0; j<numBoard.length; j++){
       totalV += numBoard[i][j];
