@@ -1,0 +1,48 @@
+Following are calls required to make in order to connect to another 
+computer from a Unix box
+
+5.1 getaddrinfo(): 
+* Sets up structs to be used later on when connecting to server
+
+5.2 socket():
+* Returns a socket descriptor to be used in later calls
+
+5.3 bind():
+* Associate socket with port. 
+* Matches packet to a socket descriptor
+
+Steps to connect to another computer: 
+1) getaddrinfo()  // create and load address struct
+2) socket() // create a socket
+3) connect()  // connect
+
+5.5 listen():
+* used to wait for incoming connections and handle them
+Steps: 
+1) getaddrinfo()
+2) socket()
+3) bind()
+4) listen()
+5) accept()
+
+5.6 accept():
+* Someone tries to connect() to your machine on a port you're listen()ing on
+* Connection is queued while waiting for accept()
+* new socket file descriptor is returned
+  * original socket is still listening to new connections
+  * new socket is ready to send() and recv()
+
+5.7 send() and recv():
+* send() => returns number of bytes sent out, check if this matches the val
+  in len. If not then break the packet down and send the rest. If packet <1k 
+  then all will be sent. 
+* recv() => returns # of bytes read into buffer. If 0 returned then remote 
+  side has closed connection. 
+
+5.8 sendto() and recvfrom(): 
+* used for udp/datagrams
+* requires destination ip address
+* you can still use send() and recv() for datagram sockets
+
+5.9 close() and shutdown():
+* close() => sekf explanatory
