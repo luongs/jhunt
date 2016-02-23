@@ -1,0 +1,25 @@
+* Socket: Way of speaking to other programs using standard Unix file descriptors
+* In other words unix can read ntwk connection like a file
+* Uses send() and recv() for better control
+
+2.1 Two types of internet sockets
+
+1) Datagram sockets => SOCK_DGRAM (connectionless socket)
+  * May arrive, but out of order
+  * UDP used
+  * No need to keep an open connection
+  * Good for speed and games
+
+2) Stream Sockets => SOCK_STREAM
+  * error free and arrive in order
+  * used in HTTP protocol
+  * TCP used to keep a high level of data transmission
+
+Data Encapsulation
+[Ethernet[IP[UDP[TFTP[DATA]]]]]
+
+Separated in layers: 
+*Application (ftp,telnet, etc)
+*Transport(TCP, UDP)
+*Internet (IP)
+*Network Access (Ethernet, wi-fi)

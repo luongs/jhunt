@@ -1,0 +1,34 @@
+IP Addresses, structs and Data Munging
+
+3.1 IP Addresses v4 and v6
+* IPv6 created to accomodate way more IP addresses for future computers
+* IPv4 => numbers separated by dots
+* IPv6 => Hex numbers
+
+3.1.1 Subnets
+* Separation of networks and host portion of IP addresses
+* eg: 192.0.2.12 => host 12 on network 192.0.2.0
+
+3.1.2 Port numbers
+* Like the local address for the connection
+* Think of IP address as the street address for a hotel 
+  and port number as room number
+* ex: HTTP => port 80, SMTP => port 25, DOOM => port 666
+
+3.2 Byte order
+* Bytes are stored as BigEndian (big end first) or LittleEndian (little end first)
+* Different computers read bytes as BigEndian or LittleEndian
+* Fortunately passing packets through a function will convert 
+*htons(), htonl() / host to network short/long
+* So you want to convert #s to netwk before they leave and
+  convert them back when they return
+
+3.3 structs
+* socket descriptor => int type
+* struct addrinfo => one of the first things called for a connection
+
+3.4.1 Private Networks
+* Firewalls translate "internal" IP addresses to "external" addresses using 
+ Network Address Translation (NAT)
+* Helps provide more IP addresses to a home network of computers
+* Then translates those addresses to the outside
