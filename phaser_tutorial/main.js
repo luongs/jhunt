@@ -31,6 +31,8 @@ var mainState = {
     game.physics.arcade.enable(this.bird);
     this.bird.body.gravity.y = 1000;
     
+    // Set center of rotation to middle of bird
+    this.bird.anchor.setTo(-0.2, 0.5);
     // pipes
     this.pipes = game.add.group();  // Create group
     this.pipes.enableBody = true;   // Add physics to group
@@ -53,13 +55,25 @@ var mainState = {
         this.restartGame();
     }
 
-    game.physics.arcade.overlap(this.bird, this.pipes, this.restartGame, null,
+    if (this.bird.angle < 20){
+        this.bird.angle += 1;
+    }
+
+    game.physics.arcade.overlap(this.bird, this.pipes, this.hitPipe, null,
                                 this);
   },
 
   jump: function() {
+    if (this.bird.alive === false){
+        return;
+    }
     // Add vertical velocity
     this.bird.body.velocity.y = -350;
+    // Create animation on the bird
+    var animation = game.add.tween(this.bird);
+    // Change angle of sprite to -20 degrees in 100 milliseconds
+    animation.to({angle: -20}, 100);
+    animation.start();
   },
 
   restartGame: function() {
@@ -92,6 +106,22 @@ var mainState = {
     this.score += 1;
     this.labelScore.text = this.score;
   },
+
+  hitPipe : function(){
+    // if bird already hit pipe then do nothing
+    if (this.bird.alive === false){
+        return;
+    }
+
+    this.bird.alive = false;
+    // Prevent new pipes from appearing
+    game.time.events.remove(this.timer);
+
+    // Stop pipes movement
+    this.pipes.forEachAlive(function(p){
+        p.body.velocity.x = 0;
+    }, this);
+  }, 
 };
 // Add and start the 'main' state to start the game
 game.state.add('main', mainState);
