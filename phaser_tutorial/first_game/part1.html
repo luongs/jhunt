@@ -75,9 +75,31 @@ function create() {
   player.animations.add('right', RIGHT_ANIMATIONS, FRAME_PER_SECOND, LOOP);
   APP.player = player;
 
+  // Add stars
+  var stars = game.add.group();
+  stars.enableBody = true;
+  for (var i=0; i<12; i++){
+    // x coordinate of i*70 therefore spaced 70px apart
+    var star = stars.create(i*70, 0, 'star');
+    star.body.gravity.y = 6;
+    star.body.bounce.y = 0.7 + Math.random()*0.2;
+  }
+  APP.stars = stars;
+
   // detect keyboard strokes
   var cursors = game.input.keyboard.createCursorKeys();
   APP.cursors = cursors;
+
+  // score variables
+  var score = 0;
+  var scoreText;
+  var TEXT_X_COORD = 18;
+  var TEXT_Y_COORD = 18;
+  var TEXT_DEF = 'score: 0';
+  var FONT_OBJ = {fontSize: '32px', fill: "#000"};
+  scoreText = game.add.text(TEXT_X_COORD, TEXT_Y_COORD, TEXT_DEF, FONT_OBJ);
+  APP.scoreText = scoreText;
+  APP.score = score;
 }
 
 // update() called in the game loop for every frame
@@ -85,6 +107,12 @@ function update() {
   // Colide player and stars with the platforms
   // collision will be checked against all members of platform group
   game.physics.arcade.collide(APP.player, APP.platforms);
+
+  // prevent stars from falling off map
+  game.physics.arcade.collide(APP.stars, APP.platforms);
+
+  // check if player overlaps with star. Yes => collect
+  game.physics.arcade.overlap(APP.player, APP.stars, collectStar, null, this);
 
   // Reset player velocity (movement)
 
@@ -104,8 +132,17 @@ function update() {
 
   // Allow jump if player is touching ground
   if (APP.cursors.up.isDown && APP.player.body.touching.down){
-      APP.player.body.velocity.y = -350;
+      APP.player.body.velocity.y = -500;
   }
+}
+
+function collectStar(player, star){
+  // Remove star from screen
+  star.kill();
+  // Update score
+  APP.score += 10;
+  APP.scoreText.text = 'Score: '+APP.score;
+  
 }
 
 </script>
