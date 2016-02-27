@@ -7,6 +7,7 @@ int getaddrinfo(const char *node,  // eg: url or IP
                 const struct addrinfo *hints,  // points to struct already filled
                 struct addrinfo **res);   // ptr to linked list res is result
 
+int socket(int domain, int type, int protocol);
 
 // run program
 int status; 
