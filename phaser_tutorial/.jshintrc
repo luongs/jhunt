@@ -1,0 +1,26 @@
+{
+        "browser": true,
+        "browserify": true,
+        "mocha": true,
+        "jasmine": true,
+
+        "camelcase": false,
+        "eqeqeq": true,
+        "latedef": true,
+        "noarg": true,
+        "nonew": true,
+        "quotmark": false,
+        "undef": true,
+        "unused": true,
+        "trailing": true,
+        "laxcomma": true,
+        "curly": true,
+        "devel": true,
+        "freeze": true,
+        "nonbsp": true,
+
+        "maxparams": 6,
+        "maxdepth": 4,
+        "maxstatements": 40,
+        "maxcomplexity": 11
+}
