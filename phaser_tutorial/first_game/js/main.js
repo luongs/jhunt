@@ -1,19 +1,3 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-	<meta charset="UTF-8" />
-	<title>Phaser - Making your first game, part 1</title>
-	<script type="text/javascript" src="js/phaser.min.js"></script>
-    <style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-
-<script type="text/javascript">
-
 // Phaser.AUTO will try to run webgl if possible or canvas otherwiae
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
@@ -74,10 +58,6 @@ function create() {
   player.animations.add('left', LEFT_ANIMATIONS, FRAME_PER_SECOND, LOOP);
   player.animations.add('right', RIGHT_ANIMATIONS, FRAME_PER_SECOND, LOOP);
   APP.player = player;
-
-  // detect keyboard strokes
-  var cursors = game.input.keyboard.createCursorKeys();
-  APP.cursors = cursors;
 }
 
 // update() called in the game loop for every frame
@@ -85,30 +65,4 @@ function update() {
   // Colide player and stars with the platforms
   // collision will be checked against all members of platform group
   game.physics.arcade.collide(APP.player, APP.platforms);
-
-  // Reset player velocity (movement)
-
-  if (APP.cursors.left.isDown){
-      APP.player.body.velocity.x = -150;
-
-      APP.player.animations.play('left')
-  }
-  else if (APP.cursors.right.isDown){
-      APP.player.body.velocity.x = 150;
-      APP.player.animations.play('right');
-  }
-  else {
-      APP.player.animations.stop();
-      APP.player.frame = 4;
-  }
-
-  // Allow jump if player is touching ground
-  if (APP.cursors.up.isDown && APP.player.body.touching.down){
-      APP.player.body.velocity.y = -350;
-  }
 }
-
-</script>
-
-</body>
-</html>
