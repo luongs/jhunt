@@ -21,6 +21,9 @@ var mainState = {
     // Set physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    this.score = 0;
+    this.labelScore = game.add.text(20,20,"0", {font:"30px Arial", 
+                                                fill: "#ffffff"});
     // Display sprite on screen
     this.bird = this.game.add.sprite(100,245,'bird');
 
@@ -49,6 +52,9 @@ var mainState = {
     if (this.bird.inWorld === false){
         this.restartGame();
     }
+
+    game.physics.arcade.overlap(this.bird, this.pipes, this.restartGame, null,
+                                this);
   },
 
   jump: function() {
@@ -82,6 +88,9 @@ var mainState = {
           this.addOnePipe(400, i*60+10);
       }
     }
+
+    this.score += 1;
+    this.labelScore.text = this.score;
   },
 };
 // Add and start the 'main' state to start the game
