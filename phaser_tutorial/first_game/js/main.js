@@ -1,3 +1,10 @@
+// Define functions
+
+var create;
+var preload;
+var update;
+var collectStar; 
+
 // Phaser.AUTO will try to run webgl if possible or canvas otherwiae
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'gameDiv',
                            {preload:preload, create:create, update: update});
