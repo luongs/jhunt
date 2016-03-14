@@ -1,5 +1,6 @@
 import logging
 import requests
+import sys
 import time
 
 LOG_FILE = 'magnificient.log'
@@ -52,6 +53,8 @@ def main():
             logger.warning(counter)
             time.sleep(AMT_SLEEP)
         except requests.exceptions.RequestException as e:
+            logger.warning("Unexpected error with server")
+            logger.warning("Script will halt. Error trace:")
             logger.warning(e)
             sys.exit(1)
 
